@@ -1,6 +1,6 @@
-# Tayyib Invest API
+# Tayyib Invest
 
-Tayyib Invest API is a FastAPI application designed for halal stock validation. It provides endpoints for searching companies and validating their compliance with halal investment principles.
+Tayyib Invest is a FastAPI application designed for halal stock validation. It provides endpoints for searching companies and validating their compliance with halal investment principles.
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@ Tayyib Invest API is a FastAPI application designed for halal stock validation. 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/ade-mola/tayyib_invest.git
+   git clone https://github.com/ade-mola/tayyib-invest.git
    cd tayyib_invest
    ```
 
