@@ -1,0 +1,8 @@
+fastapi
+groq
+httpx
+pydantic
+python-dotenv
+requests
+uvicorn
+yfinance
