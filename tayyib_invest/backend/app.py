@@ -11,7 +11,8 @@ from tayyib_invest.backend.screener.validate_halal import ValidateHalalStock
 
 app = FastAPI(title="Tayyib Invest API", description="API for halal stock validation")
 
-origins = ["http://127.0.0.1:8000"]
+origins = ["http://127.0.0.1:8000",
+           "https://https://tayyib-invest.vercel.app/"]
 
 app.add_middleware(
     CORSMiddleware,
