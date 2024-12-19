@@ -15,32 +15,33 @@ class ValidateHalalStock:
     async def _validation_methods(self) -> tuple[dict, float]:
         financials = await self.financials.get_financials()
         financial_ratios = FinancialRatioScreener(financials)
-
         business_activity = BusinessActivityValidator(financials["info"])
 
-        validation_methods = [
-            business_activity.is_valid_business_activity,
-            financial_ratios.income_non_sharia_compliant_ratio,
-            financial_ratios.debt_cap_ratio,
-            financial_ratios.cash_cap_ratio,
-            financial_ratios.liquidity_ratio,
-        ]
+        validation_methods = {
+            "is_valid_business_activity": business_activity.is_valid_business_activity,
+            "income_non_sharia_compliant_ratio": financial_ratios.income_non_sharia_compliant_ratio,
+            "debt_cap_ratio": financial_ratios.debt_cap_ratio,
+            "cash_cap_ratio": financial_ratios.cash_cap_ratio,
+            "liquidity_ratio": financial_ratios.liquidity_ratio,
+        }
 
-        # Check all criteria and collect results
-        return {method.__name__: method() for method in validation_methods}, financials["info"].get(
-            "marketCap", 0.0
-        )
+        results = {name: method() for name, method in validation_methods.items()}
+        return results, financials["info"].get("marketCap", 0.0)
 
     async def check_halal(self) -> dict:
         """Check if the stock is Halal based on screening factors."""
         try:
             results, _ = await self._validation_methods()
-            if all(results.values()):
-                return {"status": "Halal", "reason": "Stock is Shariah compliance."}
+            status = "Halal" if all(results.values()) else "Not Halal"
+            reason = (
+                "Stock is Shariah compliance."
+                if status == "Halal"
+                else "One or more financial criteria are not met."
+            )
 
             return {
-                "status": "Not Halal",
-                "reason": "One or more financial criteria are not met.",
+                "status": status,
+                "reason": reason,
                 "details": results,
             }
         except Exception as e:

@@ -1,7 +1,7 @@
 .PHONY: fix
 fix:
-	poetry run ruff check --preview --fix
 	poetry run ruff format
+	poetry run ruff check --preview --fix
 
 .PHONY: lint
 lint:
