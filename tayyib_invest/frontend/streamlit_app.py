@@ -53,10 +53,10 @@ def validate_stock_compliance(symbol: str) -> None:
     if symbol:
         try:
             response = requests.post(
-                f"{API_URL}/validate_halal_stock", json={"ticker": symbol}, timeout=20
+                f"{API_URL}/comprehensive_screening", json={"ticker": symbol}, timeout=20
             )
             if response.status_code == 200:
-                st.session_state.compliance = response.json().get("compliance", {})
+                st.session_state.compliance = response.json()
             else:
                 st.session_state.compliance = None
                 st.error("Error validating stock compliance.")
@@ -74,25 +74,37 @@ def display_compliance_results(compliance: dict) -> None:
         return
 
     # Display overall status
-    st.subheader("Compliance Status")
-    status = compliance.get("status", "Unknown")
-    reason = compliance.get("reason", "No reason provided.")
+
+    ticker = compliance.get("ticker", "Unknown")
+    name = compliance.get("long_name", "Unknown")
+
+    st.subheader(f"Compliance Results for {ticker} - {name}")
+
+    shariah_compliance = compliance.get("shariah_compliance", {})
+    overall_compliant = shariah_compliance.get("overall_compliant", {})
+    status = overall_compliant.get("status", "Unknown")
+    reason = overall_compliant.get("reason", "No reason provided.")
+
     st.write(f"**Status:** {status}")
     st.write(f"**Reason:** {reason}")
 
-    # Display detailed compliance breakdown
-    details = compliance.get("details", {})
-    if details:
-        st.subheader("Detailed Compliance Breakdown")
-        for key, value in details.items():
-            if isinstance(value, list) and len(value) == 2:
-                is_valid = "✅" if value[0] else "❌"
-                st.write(
-                    f"- **{key.replace('_', ' ').capitalize()}**: {is_valid} (Value: {value[1]})"
-                )
-            else:
-                is_valid = "✅" if value else "❌"
-                st.write(f"- **{key.replace('_', ' ').capitalize()}**: {is_valid}")
+    ai_analysis = compliance.get("ai_analysis", "No AI analysis available.")
+    st.subheader("AI Analysis")
+    st.write(ai_analysis)
+
+    # # Display detailed compliance breakdown
+    # details = compliance.get("details", {})
+    # if details:
+    #     st.subheader("Detailed Compliance Breakdown")
+    #     for key, value in details.items():
+    #         if isinstance(value, list) and len(value) == 2:
+    #             is_valid = "✅" if value[0] else "❌"
+    #             st.write(
+    #                 f"- **{key.replace('_', ' ').capitalize()}**: {is_valid} (Value: {value[1]})"
+    #             )
+    #         else:
+    #             is_valid = "✅" if value else "❌"
+    #             st.write(f"- **{key.replace('_', ' ').capitalize()}**: {is_valid}")
 
 
 # Input Section
@@ -128,3 +140,10 @@ with col2:
 if st.session_state.compliance is not None:
     st.header("Stock Halal Compliance")
     display_compliance_results(st.session_state.compliance)
+
+
+st.markdown("""
+---
+**Disclaimer**: This tool is for educational purposes only. Always consult with a financial advisor
+and Islamic scholar for investment decisions.
+""")

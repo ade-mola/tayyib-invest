@@ -1,13 +1,12 @@
 [tool.poetry]
 name = "tayyib-invest"
 version = "0.1.0"
-description = ""
+description = "Tayyib Invest API is a FastAPI application designed for halal stock validation."
 authors = ["Ademola Kunmi <salamiolokun@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "!=3.9.7, ^3.9, <3.13"
-notebook = "^7.3.1"
 python-dotenv = "^1.0.1"
 fastapi = {extras = ["standard"], version = "^0.115.6"}
 pydantic = "^2.10.3"

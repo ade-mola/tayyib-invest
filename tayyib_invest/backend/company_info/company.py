@@ -2,7 +2,7 @@ import httpx
 import yfinance as yf
 from fastapi import HTTPException
 
-from tayyib_invest.config import FMP_API_KEY
+from ..config import FMP_API_KEY
 
 
 async def search_company(query: str) -> list[dict[str, str]]:

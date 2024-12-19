@@ -4,9 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from requests import Request
 
-from tayyib_invest.backend.company_info.company import search_company
-from tayyib_invest.backend.entities.request import SearchRequest, TickerRequest
-from tayyib_invest.backend.screener.validate_halal import ValidateHalalStock
+from .company_info.company import search_company
+from .entities.request import SearchRequest, TickerRequest
+from .screener.validate_halal import ValidateHalalStock
 
 
 app = FastAPI(title="Tayyib Invest API", description="API for halal stock validation")
@@ -66,4 +66,4 @@ async def global_exception_handler(_request: Request, exc: HTTPException) -> JSO
 
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("tayyib_invest.backend.app:app", host="0.0.0.0", port=8000, reload=True)

@@ -43,7 +43,7 @@ Tayyib Invest is a FastAPI application designed for halal stock validation. It p
 
 ## Configuration
 
-1. Create a `.env` file in the root directory of the project:
+1. Create a `.env` file in `tayyib_invest/backend` directory of the project:
 
    ```plaintext
    GROQ_API_KEY: Your API key for the Groq service.
@@ -55,7 +55,7 @@ Tayyib Invest is a FastAPI application designed for halal stock validation. It p
 To run the application, use the following command:
 
 ```bash
-python tayyib_invest/app.py
+python -m tayyib_invest.backend.app
 ```
 
 ## API Endpoints

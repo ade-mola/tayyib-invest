@@ -1,4 +1,4 @@
-from tayyib_invest.backend.entities.haram_activities import HaramActivities
+from ..entities.haram_activities import HaramActivities
 
 
 class BusinessActivityValidator:

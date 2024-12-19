@@ -1,10 +1,10 @@
 from fastapi import HTTPException
 from groq import Groq
 
-from tayyib_invest.backend.company_info.company import get_financials
-from tayyib_invest.backend.screener.business_activity import BusinessActivityValidator
-from tayyib_invest.backend.screener.financial_ratios import FinancialRatioScreener
-from tayyib_invest.config import GROQ_API_KEY
+from ..company_info.company import get_financials
+from ..config import GROQ_API_KEY
+from .business_activity import BusinessActivityValidator
+from .financial_ratios import FinancialRatioScreener
 
 
 class ValidateHalalStock:
