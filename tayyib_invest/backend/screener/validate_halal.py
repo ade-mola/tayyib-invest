@@ -1,10 +1,10 @@
 from fastapi import HTTPException
 from groq import Groq
 
-from tayyib_invest.company_info.company_financials import CompanyFinancials
+from tayyib_invest.backend.company_info.company_financials import CompanyFinancials
+from tayyib_invest.backend.screener.business_activity import BusinessActivityValidator
+from tayyib_invest.backend.screener.financial_ratios import FinancialRatioScreener
 from tayyib_invest.config import GROQ_API_KEY
-from tayyib_invest.screener.business_activity import BusinessActivityValidator
-from tayyib_invest.screener.financial_ratios import FinancialRatioScreener
 
 
 class ValidateHalalStock:
@@ -32,7 +32,16 @@ class ValidateHalalStock:
         """Check if the stock is Halal based on screening factors."""
         try:
             results, _ = await self._validation_methods()
-            status = "Halal" if all(results.values()) else "Not Halal"
+
+            all_criteria = [
+                results.get("is_valid_business_activity", False),
+                results["debt_cap_ratio"][0],
+                results["cash_cap_ratio"][0],
+                results["liquidity_ratio"][0],
+                results["income_non_sharia_compliant_ratio"][0],
+            ]
+
+            status = "Halal" if all(all_criteria) else "Not Halal"
             reason = (
                 "Stock is Shariah compliance."
                 if status == "Halal"

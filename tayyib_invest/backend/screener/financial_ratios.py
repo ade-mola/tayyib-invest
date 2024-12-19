@@ -1,4 +1,4 @@
-from tayyib_invest.screener.business_activity import BusinessActivityValidator
+from tayyib_invest.backend.screener.business_activity import BusinessActivityValidator
 
 
 class FinancialRatioScreener:

@@ -1,14 +1,14 @@
 from itertools import chain
 
-from tayyib_invest.entities.haram_activities import HaramActivities
+from tayyib_invest.backend.entities.haram_activities import HaramActivities
 
 
 class BusinessActivityValidator:
     def __init__(self, info: dict) -> None:
         self.industry = info.get("industry", "").lower()
         self.sector = info.get("sector", "").lower()
-        self.summary = info.get("longBusinessSummary", "").lower()
-        self.description_sources = [self.industry, self.sector, self.summary]
+        # self.summary = info.get("longBusinessSummary", "").lower()
+        self.description_sources = [self.industry, self.sector]
 
     @property
     def haram_activities(self) -> list:

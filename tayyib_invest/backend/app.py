@@ -6,9 +6,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from requests import Request
 
-from tayyib_invest.company_info.search_company import search_company
-from tayyib_invest.entities.request import SearchRequest, TickerRequest
-from tayyib_invest.screener.validate_halal import ValidateHalalStock
+from tayyib_invest.backend.company_info.search_company import search_company
+from tayyib_invest.backend.entities.request import SearchRequest, TickerRequest
+from tayyib_invest.backend.screener.validate_halal import ValidateHalalStock
 
 
 app = FastAPI(title="Tayyib Invest API", description="API for halal stock validation")
