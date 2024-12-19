@@ -41,6 +41,26 @@ async def validate_halal_stock(request: TickerRequest) -> dict:
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.post("/v1/generate_ai_analysis")
+async def generate_ai_analysis(request: TickerRequest) -> str | None:
+    try:
+        validator = ValidateHalalStock(request.ticker)
+        content = await validator.generate_ai_analysis()
+        return content
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/v1/comprehensive_screening")
+async def comprehensive_screening(request: TickerRequest) -> dict:
+    try:
+        validator = ValidateHalalStock(request.ticker)
+        content = await validator.comprehensive_stock_screening()
+        return content
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.exception_handler(HTTPException)
 async def global_exception_handler(_request: Request, exc: HTTPException) -> JSONResponse:
     return JSONResponse(status_code=exc.status_code, content={"message": exc.detail})

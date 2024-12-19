@@ -1,5 +1,5 @@
 .env
 .idea/
 .ipynb_checkpoints/
-.*ipynb
+*.ipynb
 __pycache__/

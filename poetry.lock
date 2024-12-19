@@ -524,6 +524,17 @@ files = [
 ]
 
 [[package]]
+name = "distro"
+version = "1.9.0"
+description = "Distro - an OS platform information API"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "distro-1.9.0-py3-none-any.whl", hash = "sha256:7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2"},
+    {file = "distro-1.9.0.tar.gz", hash = "sha256:2fa77c6fd8940f116ee1d6b94a2f90b13b5ea8d019b98bc8bafdcabcdd9bdbed"},
+]
+
+[[package]]
 name = "dnspython"
 version = "2.7.0"
 description = "DNS toolkit"
@@ -703,6 +714,25 @@ files = [
     {file = "frozendict-2.4.6-py313-none-any.whl", hash = "sha256:7134a2bb95d4a16556bb5f2b9736dceb6ea848fa5b6f3f6c2d6dba93b44b4757"},
     {file = "frozendict-2.4.6.tar.gz", hash = "sha256:df7cd16470fbd26fc4969a208efadc46319334eb97def1ddf48919b351192b8e"},
 ]
+
+[[package]]
+name = "groq"
+version = "0.13.1"
+description = "The official Python library for the groq API"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "groq-0.13.1-py3-none-any.whl", hash = "sha256:0c5d1d6df93de55de705fe73729b79baaa0c871f7575d6aa64b2962b56101b3e"},
+    {file = "groq-0.13.1.tar.gz", hash = "sha256:588fd5bee984f4eb46ec89552778d5698b9e9614435defef868645c19463cbcc"},
+]
+
+[package.dependencies]
+anyio = ">=3.5.0,<5"
+distro = ">=1.7.0,<2"
+httpx = ">=0.23.0,<1"
+pydantic = ">=1.9.0,<3"
+sniffio = "*"
+typing-extensions = ">=4.10,<5"
 
 [[package]]
 name = "h11"
@@ -3455,4 +3485,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9,<3.13"
-content-hash = "5821dfa55e3e87d3a753496ae75019b5bc951e03802b7bc1839cafd860b4a257"
+content-hash = "cd49df45c7942f2de8fa1347cc72b067ef88af920f23d3c65db0967bd055694b"
