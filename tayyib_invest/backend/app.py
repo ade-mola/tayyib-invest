@@ -11,7 +11,7 @@ from tayyib_invest.backend.screener.validate_halal import ValidateHalalStock
 
 app = FastAPI(title="Tayyib Invest API", description="API for halal stock validation")
 
-origins = ["http://localhost:8000", "https://https://tayyib-invest.vercel.app"]
+origins = ["http://localhost:8000", "https://tayyib-invest.vercel.app"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,6 +24,7 @@ app.add_middleware(
 
 @app.get("/")
 async def read_health() -> dict:
+    """Check health"""
     return {"status": "OK"}
 
 
