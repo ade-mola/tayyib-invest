@@ -16,6 +16,7 @@ yfinance = "^0.2.50"
 requests = "^2.32.3"
 groq = "^0.13.1"
 streamlit = "^1.41.1"
+pylint = "^3.3.2"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.8.3"
