@@ -3,7 +3,7 @@ import streamlit as st
 
 
 # Configuration
-API_URL = "https://tayyib-invest.vercel.app//v1"
+API_URL = "https://tayyib-invest.vercel.app/v1"
 st.set_page_config(page_title="Tayyib Invest - Halal Stock Screener", layout="centered")
 
 # Initialize session state variables
