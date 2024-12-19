@@ -64,7 +64,7 @@ class ValidateHalalStock:
 
             results, market_cap = await self._validation_methods()
 
-            prompt = f"""Provide a comprehensive analysis of {self.ticker} from multiple perspectives:
+            prompt = f"""Provide comprehensive analysis of {self.ticker} from multiple perspectives:
                 1. Shariah Compliance Assessment
                 2. Financial Health Overview
                 3. Potential Ethical Concerns

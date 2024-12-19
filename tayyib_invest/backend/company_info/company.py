@@ -30,7 +30,7 @@ async def search_company(query: str) -> list[dict[str, str]]:
     except httpx.HTTPStatusError as e:
         raise HTTPException(status_code=e.response.status_code, detail=e.response.text)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=str(e)) from e
 
 
 async def get_financials(ticker: str) -> dict:

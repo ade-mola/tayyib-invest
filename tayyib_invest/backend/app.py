@@ -1,5 +1,3 @@
-# from collections.abc import Any, Callable, Coroutine
-
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware

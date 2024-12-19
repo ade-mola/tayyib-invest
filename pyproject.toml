@@ -43,7 +43,7 @@ known-first-party = [ "tayyib_invest" ]
 lines-after-imports = 2
 
 [tool.pylint]
-disable = ["C0115", "R0902"]
+disable = ["C0114", "C0115", "R0902"]
 
 [build-system]
 requires = ["poetry-core"]

@@ -39,7 +39,7 @@ class FinancialRatioScreener:
 
         if impermissible_income_ratio > self.non_halal_income_threshold:
             print(
-                f"Not Halal. Impermissible income ratio is {impermissible_income_ratio:.2f}%, which exceeds 5%."
+                f"Not Halal. Impermissible income ratio is {impermissible_income_ratio:.2f}%, exceeds 5%."
             )
             return False, impermissible_income_ratio
 
@@ -53,9 +53,7 @@ class FinancialRatioScreener:
         debt_to_cap_ratio = self._calculate_ratio(total_debt, total_market_cap)
 
         if debt_to_cap_ratio > self.debt_threshold:
-            print(
-                f"Not Halal. Debt-to-market cap ratio is {debt_to_cap_ratio:.2f}%, which exceeds 30%"
-            )
+            print(f"Not Halal. Debt-to-market cap ratio is {debt_to_cap_ratio:.2f}%, exceeds 30%")
             return False, debt_to_cap_ratio
 
         return True, debt_to_cap_ratio
@@ -70,9 +68,7 @@ class FinancialRatioScreener:
         cash_to_cap_ratio = self._calculate_ratio(cash_and_investments, self.total_market_cap)
 
         if cash_to_cap_ratio > self.cash_threshold:
-            print(
-                f"Not Halal. Cash-to-market cap ratio is {cash_to_cap_ratio:.2f}%, which exceeds 30%"
-            )
+            print(f"Not Halal. Cash-to-market cap ratio is {cash_to_cap_ratio:.2f}%, exceeds 30%")
             return False, cash_to_cap_ratio
 
         return True, cash_to_cap_ratio
