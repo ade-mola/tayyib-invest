@@ -36,7 +36,7 @@ line-length = 100
 
 [tool.ruff.lint]
 extend-select = ["ANN", "ARG", "ASYNC", "E", "I", "N", "PL", "Q", "S", "TC", "UP", "W"]
-ignore = ["E501", "ANN401", "PLR2004", ]
+ignore = ["E501", "ANN401", "PLR2004", "S104"]
 
 [tool.ruff.lint.isort]
 known-first-party = [ "tayyib_invest" ]
