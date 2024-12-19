@@ -24,7 +24,7 @@ app.add_middleware(
 )
 
 
-@app.post("/v1/search")  # type: ignore
+@app.post("/v1/search")
 async def search(request: SearchRequest) -> dict:
     results = await search_company(request.query)
     return {"results": results}
