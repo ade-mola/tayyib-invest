@@ -1,0 +1,19 @@
+{
+    "builds":[
+        {
+            "src": "backend/app.py",
+            "use": "@vercel/python",
+            "config": {
+                "env": {
+                    "PYTHONPATH": "."
+                }
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "backend/app.py"
+        }
+    ]
+}
