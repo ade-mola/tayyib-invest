@@ -28,7 +28,7 @@ async def search_company(query: str) -> list[dict[str, str]]:
         )
 
     except httpx.HTTPStatusError as e:
-        raise HTTPException(status_code=e.response.status_code, detail=e.response.text)
+        raise HTTPException(status_code=e.response.status_code, detail=e.response.text) from e
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
 

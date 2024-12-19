@@ -39,7 +39,7 @@ class FinancialRatioScreener:
 
         if impermissible_income_ratio > self.non_halal_income_threshold:
             print(
-                f"Not Halal. Impermissible income ratio is {impermissible_income_ratio:.2f}%, exceeds 5%."
+                f"Not Halal. Haram income ratio is {impermissible_income_ratio:.2f}%, exceeds 5%."
             )
             return False, impermissible_income_ratio
 
