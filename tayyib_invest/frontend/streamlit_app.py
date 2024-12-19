@@ -52,7 +52,9 @@ def validate_stock_compliance(symbol: str) -> None:
     """
     if symbol:
         try:
-            response = requests.post(f"{API_URL}/validate_halal_stock", json={"ticker": symbol}, timeout=20)
+            response = requests.post(
+                f"{API_URL}/validate_halal_stock", json={"ticker": symbol}, timeout=20
+            )
             if response.status_code == 200:
                 st.session_state.compliance = response.json().get("compliance", {})
             else:
@@ -85,7 +87,9 @@ def display_compliance_results(compliance: dict) -> None:
         for key, value in details.items():
             if isinstance(value, list) and len(value) == 2:
                 is_valid = "✅" if value[0] else "❌"
-                st.write(f"- **{key.replace('_', ' ').capitalize()}**: {is_valid} (Value: {value[1]})")
+                st.write(
+                    f"- **{key.replace('_', ' ').capitalize()}**: {is_valid} (Value: {value[1]})"
+                )
             else:
                 is_valid = "✅" if value else "❌"
                 st.write(f"- **{key.replace('_', ' ').capitalize()}**: {is_valid}")

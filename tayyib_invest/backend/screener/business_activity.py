@@ -1,10 +1,9 @@
-from itertools import chain
-
 from tayyib_invest.backend.entities.haram_activities import HaramActivities
 
 
 class BusinessActivityValidator:
     def __init__(self, info: dict) -> None:
+        """Initialize with company info."""
         self.industry = info.get("industry", "").lower()
         self.sector = info.get("sector", "").lower()
         # self.summary = info.get("longBusinessSummary", "").lower()
@@ -13,7 +12,9 @@ class BusinessActivityValidator:
     @property
     def haram_activities(self) -> list:
         """Return a list of haram activities."""
-        return [activity.lower() for activity in chain(*[activities.value for activities in HaramActivities])]
+        return [
+            keyword.lower() for activity in HaramActivities for keyword in activity.get_keywords
+        ]
 
     def is_valid_business_activity(self) -> bool:
         """Check if the activity is halal."""

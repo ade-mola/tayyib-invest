@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from groq import Groq
 
-from tayyib_invest.backend.company_info.company_financials import CompanyFinancials
+from tayyib_invest.backend.company_info.company import get_financials
 from tayyib_invest.backend.screener.business_activity import BusinessActivityValidator
 from tayyib_invest.backend.screener.financial_ratios import FinancialRatioScreener
 from tayyib_invest.config import GROQ_API_KEY
@@ -9,11 +9,12 @@ from tayyib_invest.config import GROQ_API_KEY
 
 class ValidateHalalStock:
     def __init__(self, ticker: str) -> None:
+        """Initialize with the stock ticker."""
         self.ticker = ticker
-        self.financials = CompanyFinancials(self.ticker)
 
     async def _validation_methods(self) -> tuple[dict, float]:
-        financials = await self.financials.get_financials()
+        """Run validation methods and return results."""
+        financials = await get_financials(self.ticker)
         financial_ratios = FinancialRatioScreener(financials)
         business_activity = BusinessActivityValidator(financials["info"])
 
@@ -54,9 +55,10 @@ class ValidateHalalStock:
                 "details": results,
             }
         except Exception as e:
-            raise HTTPException(status_code=500, detail=str(e))
+            raise HTTPException(status_code=500, detail=str(e)) from e
 
     async def generate_ai_analysis(self) -> str | None:
+        """Generate AI analysis based on financial data."""
         try:
             client = Groq(api_key=GROQ_API_KEY)
 
@@ -82,10 +84,11 @@ class ValidateHalalStock:
 
             return chat_completion.choices[0].message.content
         except Exception as e:
-            raise HTTPException(status_code=500, detail=str(e))
+            raise HTTPException(status_code=500, detail=str(e)) from e
 
     async def comprehensive_stock_screening(self) -> dict:
-        financials = await self.financials.get_financials()
+        """Return a comprehensive stock screening."""
+        financials = await get_financials(self.ticker)
 
         return {
             "ticker": self.ticker.upper(),
