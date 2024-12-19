@@ -11,7 +11,7 @@ from tayyib_invest.backend.screener.validate_halal import ValidateHalalStock
 
 app = FastAPI(title="Tayyib Invest API", description="API for halal stock validation")
 
-origins = ["http://127.0.0.1:8000",
+origins = ["http://localhost:8000",
            "https://https://tayyib-invest.vercel.app/"]
 
 app.add_middleware(
@@ -61,4 +61,4 @@ async def global_exception_handler(_request: Request, exc: HTTPException) -> JSO
 
 
 if __name__ == "__main__":
-    uvicorn.run("app:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
