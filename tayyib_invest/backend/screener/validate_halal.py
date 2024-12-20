@@ -74,10 +74,11 @@ class ValidateHalalStock:
                 self.ticker,
                 latest_report,
                 market_cap,
+                results["is_valid_business_activity"],
                 results["debt_cap_ratio"][1],
+                results["income_non_sharia_compliant_ratio"][1],
                 results["cash_cap_ratio"][1],
                 results["liquidity_ratio"][1],
-                results["income_non_sharia_compliant_ratio"][1],
             )
 
             chat_completion = client.chat.completions.create(

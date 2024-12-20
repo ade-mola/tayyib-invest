@@ -15,6 +15,7 @@ LLM_PROMPT = """Provide comprehensive analysis of {} from multiple perspectives:
 Context:
 - Latest financial report date: {}
 - Market Cap: ${}
+- Is Business Activity Halal: {}
 - Debt-Market Cap Ratio: {}%
 - Non-Halal Income Ratio: {}%
 - Cash-Market Cap ratio: {}%
