@@ -78,12 +78,17 @@ def display_compliance_results(compliance: dict) -> None:
     ticker = compliance.get("ticker", "Unknown")
     name = compliance.get("long_name", "Unknown")
 
-    st.subheader(f"Compliance Results for {ticker} - {name}")
-
     shariah_compliance = compliance.get("shariah_compliance", {})
     overall_compliant = shariah_compliance.get("overall_compliant", {})
+    latest_report_date = overall_compliant.get("latest_report_date", "Unknown")
     status = overall_compliant.get("status", "Unknown")
     reason = overall_compliant.get("reason", "No reason provided.")
+
+    st.subheader(f"Compliance Results for {ticker} - {name}")
+
+    st.write(
+        f"According to the company's latest annual report for the fiscal year ending {latest_report_date}:"
+    )
 
     st.write(f"**Status:** {status}")
     st.write(f"**Reason:** {reason}")

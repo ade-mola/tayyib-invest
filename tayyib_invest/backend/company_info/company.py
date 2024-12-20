@@ -49,6 +49,6 @@ async def get_financials(ticker: str) -> dict:
     # get latest yearly info
     return {
         "info": info,
-        "balance_sheet": balance_sheet.iloc[:, 0].to_dict(),
-        "financials": financials.iloc[:, 0].to_dict(),
+        "balance_sheet": balance_sheet.iloc[:, 0],
+        "financials": financials.iloc[:, 0],
     }
