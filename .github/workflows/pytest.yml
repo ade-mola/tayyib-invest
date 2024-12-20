@@ -22,5 +22,5 @@ jobs:
           poetry install
       - name: Test with pytest
         run: |
-          poetry run pytest tests/ --doctest-modules --junitxml=junit/test-results-${{ matrix.python-version }}.xml
+          poetry run pytest tests/ --doctest-modules --junitxml=junit/test-results-${{ matrix.python-version }}.xml \
           --cov --cov-report=xml --cov-report=html
