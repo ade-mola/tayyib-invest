@@ -24,6 +24,7 @@ pytest = "^8.3.4"
 uvicorn = "^0.34.0"
 pytest-mock = "^3.14.0"
 pytest-asyncio = "^0.25.0"
+pytest-cov = "^6.0.0"
 
 [tool.mypy]
 ignore_missing_imports = true
@@ -44,7 +45,7 @@ known-first-party = [ "tayyib_invest" ]
 lines-after-imports = 2
 
 [tool.pylint]
-disable = ["C0114", "C0115", "C0116", "R0902", "W0212"]
+disable = ["C0114", "C0115", "C0116", "R0902", "W0212", "W0621"]
 
 [build-system]
 requires = ["poetry-core"]
